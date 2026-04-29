@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Кото-Няня | Сервис проверенных ситтеров для кошек</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23ff9a76'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white'%3E🐱%3C/text%3E%3C/svg%3E">
     <style>
-        /* Сброс и базовые стили */
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #fef9f3; /* Теплый светлый фон */
+            background-color: #fef9f3;
             color: #333;
             line-height: 1.6;
         }
@@ -41,22 +41,36 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            position: relative;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            color: #ff9a76; /* Теплый оранжевый */
+            color: #ff9a76;
             text-decoration: none;
         }
         .logo span {
-            color: #6a5acd; /* Фиолетовый для контраста */
+            color: #6a5acd;
         }
 
+        .burger {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ff9a76;
+            padding: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
         .nav-links a {
             color: #555;
             text-decoration: none;
-            margin-left: 30px;
             font-weight: 500;
             transition: color 0.3s;
         }
@@ -64,59 +78,170 @@
             color: #ff9a76;
         }
 
-        /* Главный экран */
+        @media (max-width: 768px) {
+            .burger {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                transition: left 0.3s;
+                z-index: 1100;
+                padding: 40px 20px;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1050;
+                display: none;
+            }
+            .menu-overlay.active {
+                display: block;
+            }
+        }
+
+        /* Герой */
         .hero {
-            padding: 80px 0;
+            padding: 60px 0 40px;
             text-align: center;
             background: linear-gradient(135deg, #fff5ec 0%, #f0e6ff 100%);
         }
-
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #333;
+        }
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
         }
         .hero h1 span {
             color: #ff9a76;
         }
-
         .hero p {
-            font-size: 1.3rem;
-            color: #666;
+            font-size: 1.1rem;
             max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+        @media (min-width: 768px) {
+            .hero p {
+                font-size: 1.3rem;
+            }
         }
 
-        .cta-button {
-            display: inline-block;
+        /* Контактный блок (главный) */
+        .contact-block {
+            background: white;
+            border-radius: 30px;
+            padding: 35px 25px;
+            margin: 30px auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 900px;
+        }
+        .contact-block h2 {
+            font-size: 1.8rem;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        .contact-block h2 span {
+            color: #ff9a76;
+        }
+        .contact-block p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .big-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            min-width: 200px;
+            min-height: 56px;
+        }
+        .big-contact-btn i {
+            font-size: 1.5rem;
+        }
+        .big-contact-btn.tg {
+            background-color: #0088cc;
+            color: white;
+        }
+        .big-contact-btn.email {
             background-color: #6a5acd;
             color: white;
-            padding: 18px 40px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 5px 20px rgba(106, 90, 205, 0.3);
-            transition: all 0.3s ease;
         }
-        .cta-button:hover {
-            background-color: #5a4bbd;
+        .big-contact-btn.phone {
+            background-color: #28a745;
+            color: white;
+        }
+        .big-contact-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(106, 90, 205, 0.4);
+            filter: brightness(1.05);
         }
-        .cta-button i {
-            margin-right: 10px;
+        @media (max-width: 640px) {
+            .contact-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .big-contact-btn {
+                width: 100%;
+            }
+            .contact-block h2 {
+                font-size: 1.5rem;
+            }
         }
 
-        /* Секции общие */
+        /* Общие секции */
         section {
-            padding: 80px 0;
+            padding: 60px 0;
+        }
+        @media (min-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
         }
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
+            font-size: 2rem;
+            margin-bottom: 40px;
             color: #444;
+        }
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 60px;
+            }
         }
         .section-title span {
             color: #ff9a76;
@@ -125,40 +250,37 @@
         /* Преимущества */
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
-
+        @media (min-width: 640px) {
+            .benefits-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
         .benefit-card {
             background: white;
-            padding: 40px 30px;
+            padding: 30px 25px;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
         }
         .benefit-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
-
         .benefit-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #6a5acd;
-            margin-bottom: 25px;
-        }
-
-        .benefit-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #444;
+            margin-bottom: 20px;
         }
         .role-label {
             display: inline-block;
             padding: 5px 15px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .owner-label {
             background-color: #e6f7ff;
@@ -169,35 +291,49 @@
             color: #6a5acd;
         }
 
-        /* Как это работает */
+        /* Шаги */
         .steps-container {
             max-width: 800px;
             margin: 0 auto;
         }
         .step {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 50px;
+            text-align: center;
+            margin-bottom: 40px;
             background: white;
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
         }
+        @media (min-width: 768px) {
+            .step {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
         .step-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: #ff9a76;
-            min-width: 80px;
+            min-width: 70px;
+            margin-bottom: 15px;
+        }
+        @media (min-width: 768px) {
+            .step-number {
+                margin-bottom: 0;
+            }
         }
         .step-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
         }
         .step-note {
             font-style: italic;
             color: #666;
             margin-top: 10px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             padding-left: 15px;
             border-left: 3px solid #ff9a76;
         }
@@ -205,69 +341,94 @@
         /* Отзывы */
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        @media (min-width: 640px) {
+            .reviews-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
         }
         .review-card {
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
         .review-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .review-avatar {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background-color: #eee;
             margin-right: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #777;
         }
-        .review-info h4 {
-            margin-bottom: 5px;
+
+        /* Кнопка наверх */
+        .go-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff9a76;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 1000;
+            border: none;
         }
-        .review-role {
-            color: #ff9a76;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        .review-text {
-            color: #555;
-            font-style: italic;
-            line-height: 1.7;
+        .go-to-top.show {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Футер */
         footer {
             background-color: #333;
             color: #ddd;
-            padding: 50px 0 20px;
+            padding: 40px 0 20px;
         }
         .footer-content {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        @media (min-width: 640px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
         .footer-logo {
             font-size: 1.8rem;
             font-weight: 800;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .footer-links a {
             color: #bbb;
             text-decoration: none;
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             transition: color 0.3s;
         }
         .footer-links a:hover {
@@ -277,169 +438,216 @@
             text-align: center;
             padding-top: 20px;
             border-top: 1px solid #444;
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .nav-links { display: none; } /* Для мобильных можно добавить бургер-меню */
-            .step { flex-direction: column; text-align: center; }
-            .step-number { margin-bottom: 15px; }
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
-    <!-- Шапка -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">Кото<span>Няня</span></a>
-            <nav class="nav-links">
+
+<header>
+    <div class="container nav-container">
+        <a href="#" class="logo">Кото<span>Няня</span></a>
+        <button class="burger" id="burgerBtn" aria-label="Меню">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="nav-links" id="navLinks">
+            <a href="#benefits">Преимущества</a>
+            <a href="#how">Как это работает</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contact">Связаться</a>
+        </nav>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+</header>
+
+<!-- Герой -->
+<section class="hero">
+    <div class="container">
+        <h1>Надежная забота о вашем <span>коте</span></h1>
+        <p>Кото-Няня — сервис, который с любовью соединяет ответственных владельцев кошек и проверенных ситтеров.</p>
+    </div>
+</section>
+
+<!-- Главный контактный блок -->
+<div class="container" id="contact">
+    <div class="contact-block">
+        <h2>Свяжитесь с нами <span>любым удобным способом</span></h2>
+        <p>Мы лично подбираем ситтеров и владельцев. Напишите или позвоните — и мы найдём надёжную заботу для вашего кота или новых клиентов для вас.</p>
+        <div class="contact-buttons">
+            <a href="https://t.me/mr_alex_anisimov" target="_blank" class="big-contact-btn tg">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="mailto:alex.05.anisimov@gmail.com" class="big-contact-btn email">
+                <i class="fas fa-envelope"></i> Эл. почта
+            </a>
+            <a href="tel:+79268775059" class="big-contact-btn phone">
+                <i class="fas fa-phone-alt"></i> Позвонить
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Преимущества -->
+<section id="benefits" style="background-color: #fff;">
+    <div class="container">
+        <h2 class="section-title">Почему выбирают <span>Кото-Няню</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-cat"></i></div>
+                <span class="role-label owner-label">Для владельцев</span>
+                <h3>Быстро и безопасно</h3>
+                <p>Найдите проверенного ситтера рядом. Анкеты проверяются, отзывы реальных людей помогут выбрать лучшего.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <span class="role-label sitter-label">Для кото-нянь</span>
+                <h3>Работа без поиска</h3>
+                <p>Мы находим клиентов, а вы заботитесь о котиках. Отличный дополнительный доход и новые знакомства.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Основано на доверии</h3>
+                <p>Подробные профили, чёткие договорённости и система обратной связи создают безопасную среду для всех.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Как это работает -->
+<section id="how" style="background-color: #f9f5ff;">
+    <div class="container">
+        <h2 class="section-title">Начать пользоваться — <span>проще простого</span></h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Свяжитесь с нами</h3>
+                    <p>Напишите в Telegram, на почту или позвоните — мы на связи 7 дней в неделю.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Расскажите о себе</h3>
+                    <p>Несколько вопросов о вас, питомце или вашем опыте ситтерства. Это займёт 2–3 минуты.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Мы подберём пару</h3>
+                    <p>Лично подберём подходящих кандидатов или разместим ваш профиль в нашем канале.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Договоритесь напрямую</h3>
+                    <p>Обсудите детали, встречу и оплату с будущим ситтером или владельцем.</p>
+                    <p class="step-note">Мы только знакомим — всё остальное остаётся между вами.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Отзывы -->
+<section id="reviews">
+    <div class="container">
+        <h2 class="section-title">Что говорят <span>наши пользователи</span></h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar"><i class="fas fa-user"></i></div>
+                    <div class="review-info">
+                        <h4>Анна, Москва</h4>
+                        <div class="review-role">Владелица сфинксов</div>
+                    </div>
+                </div>
+                <p class="review-text">"Уезжали в отпуск — очень переживали. Нашли ситтера, которая присылала фото каждый день! Теперь только к ней."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar"><i class="fas fa-user"></i></div>
+                    <div class="review-info">
+                        <h4>Игорь, Санкт-Петербург</h4>
+                        <div class="review-role">Кото-няня</div>
+                    </div>
+                </div>
+                <p class="review-text">"Люблю кошек, но завести пока не могу. Через сервис нашёл постоянных клиентов в районе — очень удобно."</p>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar"><i class="fas fa-user"></i></div>
+                    <div class="review-info">
+                        <h4>Елена и Михаил, Казань</h4>
+                        <div class="review-role">Владельцы мейн-куна</div>
+                    </div>
+                </div>
+                <p class="review-text">"Искали ситтера, который не испугается размера Громозеки. Нашли студента-ветеринара! Экономит нервы."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Кото<span style="color:#ff9a76;">Няня</span></div>
+                <p>Сервис проверенных ситтеров для ваших кошек.<br>Свяжитесь с нами любым способом.</p>
+            </div>
+            <div class="footer-links">
                 <a href="#benefits">Преимущества</a>
                 <a href="#how">Как это работает</a>
                 <a href="#reviews">Отзывы</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Главный экран -->
-    <section class="hero">
-        <div class="container">
-            <h1>Надежная забота о вашем <span>коте</span></h1>
-            <p>Telegram-сервис, который с любовью соединяет ответственных владельцев кошек и проверенных ситтеров. Ваш питомец в надежных руках, а вы спокойны.</p>
-            <a href="https://t.me/Cotositter_bot" target="_blank" class="cta-button"><i class="fab fa-telegram"></i> Перейти в бота</a>
-        </div>
-    </section>
-
-    <!-- Преимущества -->
-    <section id="benefits" style="background-color: #fff;">
-        <div class="container">
-            <h2 class="section-title">Почему выбирают <span>Кото-Няню</span></h2>
-            <div class="benefits-grid">
-                <!-- Для владельцев -->
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-cat"></i></div>
-                    <span class="role-label owner-label">Для владельцев</span>
-                    <h3>Быстро и безопасно</h3>
-                    <p>Найдите проверенного ситтера рядом за минуты. Мы заботимся о безопасности: анкеты проверяются, а отзывы помогают выбрать лучшего.</p>
-                </div>
-                <!-- Для ситтеров -->
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    <span class="role-label sitter-label">Для кото-нянь</span>
-                    <h3>Работа без поиска</h3>
-                    <p>Концентрируйтесь на заботе о котиках, а не на поиске клиентов. Подключайтесь как дополнительный источник дохода, не уходя с других платформ.</p>
-                </div>
-                <!-- Общее -->
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Основано на доверии</h3>
-                    <p>Профили с подробной информацией, четкие договоренности внутри сервиса и система обратной связи создают безопасную среду для всех.</p>
-                </div>
+                <a href="https://t.me/mr_alex_anisimov" target="_blank">Telegram</a>
+                <a href="mailto:alex.05.anisimov@gmail.com">Эл. почта</a>
+                <a href="tel:+79268775059">Позвонить</a>
             </div>
         </div>
-    </section>
-
-    <!-- Как это работает -->
-    <section id="how" style="background-color: #f9f5ff;">
-        <div class="container">
-            <h2 class="section-title">Начать пользоваться — <span>проще простого</span></h2>
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Перейдите в Telegram-бота</h3>
-                        <p>Нажмите кнопку "Перейти в бота" выше или найдите <strong>@Cotositter_bot</strong> в Telegram.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Зарегистрируйтесь и создайте анкету</h3>
-                        <p>Ответьте на несколько вопросов о себе и своем питомце (или об условиях ситтерства). Это займет 2-3 минуты.</p>
-                        <p class="step-note">Мы не требуем лишних данных — только то, что важно для успешного знакомства.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Найдите идеальную пару</h3>
-                        <p>Используйте удобный поиск по анкетам в боте. Фильтруйте по району, опыту, наличию животных и другим важным критериям.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Свяжитесь и договоритесь</h3>
-                        <p>Напишите понравившемуся пользователю прямо в Telegram, чтобы обсудить детали и договориться о встрече.</p>
-                        <p class="step-note">Весь дальнейший процесс — знакомство, оплата, передача ключей — остается между вами. Мы лишь помогли вам найти друг друга на основе доверия.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="copyright">
+            &copy; 2026 Кото-Няня. Все права защищены. Мы любим котиков.
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Отзывы -->
-    <section id="reviews">
-        <div class="container">
-            <h2 class="section-title">Что говорят <span>наши пользователи</span></h2>
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-avatar"><i class="fas fa-user"></i></div>
-                        <div class="review-info">
-                            <h4>Анна, Москва</h4>
-                            <div class="review-role">Владелица двух сфинксов</div>
-                        </div>
-                    </div>
-                    <p class="review-text">"Уезжали в отпуск, очень переживали. Нашли через бота Марину, которая уже сидела с лысыми кошками. Она присылала фото и отчеты каждый день! Теперь только к ней."</p>
-                </div>
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-avatar"><i class="fas fa-user"></i></div>
-                        <div class="review-info">
-                            <h4>Игорь, Санкт-Петербург</h4>
-                            <div class="review-role">Кото-няня</div>
-                        </div>
-                    </div>
-                    <p class="review-text">"Люблю кошек, но заводить свою пока не могу. Через этого бота нашел постоянных 'клиентов' в своем районе. Очень удобно, что не надо никуда выкладывать объявления и общаться с сотней людей."</p>
-                </div>
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="review-avatar"><i class="fas fa-user"></i></div>
-                        <div class="review-info">
-                            <h4>Елена и Михаил, Казань</h4>
-                            <div class="review-role">Владельцы мейн-куна</div>
-                        </div>
-                    </div>
-                    <p class="review-text">"Искали ситтера, который не испугается размеров нашего Громозеки и знает породные особенности. Нашли студента-ветеринара! Сервис экономит кучу времени и нервов. Рекомендуем!"</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<button class="go-to-top" id="goToTopBtn" aria-label="Наверх">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
-    <!-- Футер -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">Кото<span style="color:#ff9a76;">Няня</span></div>
-                    <p>Сервис проверенных ситтеров для ваших кошек.<br>Работаем в Telegram для вашего удобства.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#benefits">Преимущества</a>
-                    <a href="#how">Инструкция</a>
-                    <a href="#reviews">Отзывы</a>
-                    <a href="https://t.me/Cotositter_bot" target="_blank">Ссылка на бота</a>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2026 Кото-Няня. Все права защищены. Мы любим котиков.
-            </div>
-        </div>
-    </footer>
+<script>
+    // Бургер-меню
+    const burger = document.getElementById('burgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    const overlay = document.getElementById('menuOverlay');
 
+    function closeMenu() {
+        navLinks.classList.remove('active');
+        overlay.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+    }
+    function openMenu() {
+        navLinks.classList.add('active');
+        overlay.classList.add('active');
+        burger.setAttribute('aria-expanded', 'true');
+    }
+
+    burger.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) closeMenu();
+        else openMenu();
+    });
+    overlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
+
+    // Кнопка наверх
+    const goTopBtn = document.getElementById('goToTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) goTopBtn.classList.add('show');
+        else goTopBtn.classList.remove('show');
+    });
+    goTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
 </body>
 </html>
